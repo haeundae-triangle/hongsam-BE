@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import json
+with open('./secrets.json') as f:
+    secrets = json.load(f)
+mysql_passwd = secrets['MYSQL_ROOT_PASSWD']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'gameapp',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,8 +81,13 @@ WSGI_APPLICATION = 'hongsam_BE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hongsam',
+        'USER': 'root',
+        'PASSWORD': mysql_passwd,
+        'HOST': 'localhost',
+        'PORT': '3307'
+
     }
 }
 

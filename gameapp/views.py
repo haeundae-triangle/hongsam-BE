@@ -13,3 +13,9 @@ def game_detail(request, game_pk):
     game = Game.objects.get(pk=game_pk)
     serializer = GameSerializer(game)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def game_top10(request):
+    games = Game.objects.order_by('pk')[:10]
+    serializer = GameSerializer(games, many=True)
+    return Response(serializer.data)

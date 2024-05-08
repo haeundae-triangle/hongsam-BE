@@ -7,7 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class Game(models.Model):
     game_id = models.AutoField(primary_key=True)
     game_name = models.CharField(max_length=100)

@@ -24,6 +24,29 @@ class Game(models.Model):
         db_table = 'Game'
 
 
+class GamePlaylist(models.Model):
+    game = models.OneToOneField(Game, models.DO_NOTHING, primary_key=True)
+    playlist = models.ForeignKey('Playlist', models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'Game_Playlist'
+        unique_together = (('game', 'playlist'),)
+
+
+class Playlist(models.Model):
+    playlist_id = models.AutoField(primary_key=True)
+    playlist_name = models.CharField(max_length=100)
+    playlist_description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+    from_service = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'Playlist'
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 

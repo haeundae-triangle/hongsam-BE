@@ -22,6 +22,6 @@ def game_top10(request):
 
 @api_view(['GET'])
 def service_playlist(request):
-    playlist = Playlist.objects.all()
+    playlist = Playlist.objects.filter(from_service=1)
     serializer = PlaylistSerializer(playlist, many=True)
     return Response(serializer.data)

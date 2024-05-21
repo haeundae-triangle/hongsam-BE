@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'meeseeks$hongsam',
         'USER': 'meeseeks',
         'PASSWORD': mysql_passwd,
-        'HOST': 'meeskeeks.mysql.pythonanywhere-services.com'
+        'HOST': 'meeseeks.mysql.pythonanywhere-services.com'
 
     }
 }

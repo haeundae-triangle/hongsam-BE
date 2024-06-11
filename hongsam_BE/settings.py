@@ -17,9 +17,10 @@ with open('./secrets.json') as f:
     secrets = json.load(f)
 mysql_passwd = secrets['MYSQL_ROOT_PASSWD']
 
+ALLOWED_HOSTS = ['*']
+CORS_ALLOW_ALL_ORIGINS = True
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -56,6 +58,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'hongsam_BE.urls'
@@ -85,11 +90,11 @@ WSGI_APPLICATION = 'hongsam_BE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'meeseeks$hongsam',
-        'USER': 'meeseeks',
+        'NAME': 'hongsam',          
+        'USER': 'ny',               
         'PASSWORD': mysql_passwd,
-        'HOST': 'meeseeks.mysql.pythonanywhere-services.com'
-
+        'HOST': 'localhost',       
+        'PORT': '3306',           
     }
 }
 

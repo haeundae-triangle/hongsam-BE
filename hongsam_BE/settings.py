@@ -31,11 +31,10 @@ SECRET_KEY = 'django-insecure-$f0$aglqwwi8f8dl-c@+b=t=#9tlj_nfz_z_%tfl!p*yqg4+at
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'gameapp',
     'rest_framework',
@@ -45,8 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders'
-]
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
 
@@ -88,11 +85,11 @@ WSGI_APPLICATION = 'hongsam_BE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hongsam',          
-        'USER': 'ny',               
+        'NAME': 'hongsam',
+        'USER': 'ny',
         'PASSWORD': mysql_passwd,
-        'HOST': 'localhost',       
-        'PORT': '3306',           
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

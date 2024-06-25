@@ -35,7 +35,6 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'gameapp',
     'rest_framework',
@@ -45,9 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders'
     ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -86,11 +87,11 @@ WSGI_APPLICATION = 'hongsam_BE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hongsam',          
-        'USER': 'ny',               
+        'NAME': 'hongsam',
+        'USER': 'ny',
         'PASSWORD': mysql_passwd,
-        'HOST': 'localhost',       
-        'PORT': '3306',           
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -138,3 +139,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_ALLOW_ALL = True

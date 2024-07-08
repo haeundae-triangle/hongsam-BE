@@ -32,3 +32,10 @@ def service_playlist_detail(request, playlist_pk):
     playlist = Playlist.objects.get(pk=playlist_pk)
     serializer = PlaylistDetailSerializer(playlist)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def test(request):
+    data = {
+        "message": "hello"
+    }
+    return Response(data)

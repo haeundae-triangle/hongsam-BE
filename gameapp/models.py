@@ -24,11 +24,10 @@ class Game(models.Model):
 
 
 class GamePlaylist(models.Model):
-    game = models.OneToOneField(Game, models.DO_NOTHING, primary_key=True)
-    playlist = models.ForeignKey('Playlist', models.DO_NOTHING)
+    game = models.OneToOneField(Game, models.CASCADE, primary_key=True)
+    playlist = models.ForeignKey('Playlist', models.CASCADE)
 
     class Meta:
-        managed = False
         db_table = 'Game_Playlist'
         unique_together = (('game', 'playlist'),)
 

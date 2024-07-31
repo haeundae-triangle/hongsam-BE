@@ -7,6 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+
 class Game(models.Model):
     game_id = models.AutoField(primary_key=True)
     game_name = models.CharField(max_length=100)
@@ -23,14 +24,6 @@ class Game(models.Model):
         db_table = 'Game'
 
 
-class GamePlaylist(models.Model):
-    game = models.OneToOneField(Game, models.CASCADE, primary_key=True)
-    playlist = models.ForeignKey('Playlist', models.CASCADE)
-
-    class Meta:
-        db_table = 'Game_Playlist'
-        unique_together = (('game', 'playlist'),)
-
 
 class Playlist(models.Model):
     playlist_id = models.AutoField(primary_key=True)
@@ -44,6 +37,16 @@ class Playlist(models.Model):
         managed = False
         db_table = 'Playlist'
 
+
+class GamePlaylist(models.Model):
+    id = models.AutoField(primary_key=True)
+    game = models.ForeignKey(Game, models.CASCADE, db_column='game_id')
+    playlist = models.ForeignKey(Playlist, models.CASCADE, db_column='playlist_id')
+
+    class Meta:
+        managed = False
+        db_table = 'Game_Playlist'
+        unique_together = (('game', 'playlist'),)
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)

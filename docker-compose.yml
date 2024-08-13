@@ -30,7 +30,9 @@ services:
 
 
   nginx:
-    image: nginx:latest
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -42,7 +44,7 @@ services:
       - django
     networks:
       - hongsam_network
-    user: "www-data" 
+    user: "www-data"
 
 volumes:
   db_data:

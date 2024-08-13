@@ -44,7 +44,6 @@ services:
       - django
     networks:
       - hongsam_network
-    user: "www-data"
 
 volumes:
   db_data:

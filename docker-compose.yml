@@ -28,6 +28,20 @@ services:
       - mysql
     command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/ssl
+    depends_on:
+      - django
+    networks:
+      - hongsam_network
+
 volumes:
   db_data:
 

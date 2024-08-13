@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'hongsam',
         'USER': 'root',
         'PASSWORD': mysql_passwd,
-        'HOST': 'hongsam-be-db-1',
+        'HOST': 'mysql',
         'PORT': '3306',
     }
 }

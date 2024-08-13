@@ -1,7 +1,7 @@
 version: '3.1'
 
 services:
-  db:
+  mysql:
     image: mysql:8.0
     restart: always
     environment:
@@ -10,6 +10,27 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - hongsam_network
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - hongsam_network
+    environment:
+      - DJANGO_SETTINGS_MODULE=hongsam_BE.settings
+    depends_on:
+      - mysql
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 volumes:
   db_data:
+
+networks:
+  hongsam_network:
+    external: true
